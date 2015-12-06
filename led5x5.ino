@@ -24,6 +24,7 @@ void setup() {
 }
 
 void loop() {
+  play();
   countdown(beats);//
   bars(beats);//
   blinds(beats);//
