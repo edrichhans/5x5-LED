@@ -1,8 +1,6 @@
 #include "commands.h"
 #include "play.h"
-#include "pt.h"    //threading library from http://dunkels.com/adam/pt/
 #define beats 118
-static struct pt p1, p2;
 // the setup routine runs once when you press reset:
 void setup() {
   // initialize the digital pin as an output.
@@ -22,8 +20,6 @@ void setup() {
   digitalWrite(10, HIGH);
   digitalWrite(11, HIGH);
   Serial.begin(9600);
-  PT_INIT(&p1);
-  PT_INIT(&p2);
 }
 
 void loop() {
@@ -32,7 +28,7 @@ void loop() {
 }
 
 
-static int lights(struct pt *pt){
+void lights(struct pt *pt){
   PT_BEGIN(pt);
   countdown(beats);//
   spaceshuttle(beats/2);//
@@ -58,7 +54,7 @@ static int lights(struct pt *pt){
   PT_END(pt);
 }
 
-static int sounds(struct pt *pt){
+void sounds(struct pt *pt){
   PT_BEGIN(pt);
   play();
   PT_END(pt);
