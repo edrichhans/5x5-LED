@@ -244,3 +244,91 @@ void blinds(int bpm){
     on_led(arrtemp, 15, sec*2);
   }
 }
+
+
+void fold(int bpm){
+  int sec = 60000/bpm;
+  sec /= 7;
+  int arr[][8] = {{-1},
+                  {0, 4, 20, 24},
+                  {1, 5, 3, 9, 15, 21, 19, 23},
+                  {2, 6, 10, 8, 14, 16, 22, 18},
+                  {7, 11, 13, 17},
+                  {12}};
+  int i, j;
+  for(i = 0; i < 6; i++){
+    int s;
+    if(i < 3) s = i * 4;
+    else s = 8-((i-3)*4);
+    if(s == 0) s = 1;
+    on_led(arr[i], s, sec);
+  }
+  delay(sec);
+}
+
+void unfold(int bpm){
+  int sec = 60000/bpm;
+  sec /= 7;
+  int arr[][8] = {{-1},
+                  {0, 4, 20, 24},
+                  {1, 5, 3, 9, 15, 21, 19, 23},
+                  {2, 6, 10, 8, 14, 16, 22, 18},
+                  {7, 11, 13, 17},
+                  {12}};
+  int i, j;
+  for(i = 5; i >= 0; i--){
+    int s;
+    if(i < 3) s = i * 4;
+    else s = 8-((i-3)*4);
+    if(s == 0) s = 1;
+    on_led(arr[i], s, sec);
+  }
+  delay(sec);
+}
+
+void wiggle(int bpm){
+  int sec = 60000/bpm;
+  sec /= 8;
+  int arr[][5] = {{0, 6, 12, 18, 24},
+                  {1, 6, 12, 18, 23},
+                  {1, 7, 12, 17, 23},
+                  {2, 7, 12, 17, 22},
+                  {3, 7, 12, 17, 21},
+                  {3, 8, 12, 16, 21},
+                  {4, 8, 12, 16, 20}};
+                  int i;
+  for(i = 0; i < 7; i++){
+    on_led(arr[i], 5, sec);
+  }
+  delay(sec);
+}
+void wiggle_reverse(int bpm){
+  int sec = 60000/bpm;
+  sec /= 8;
+  int arr[][5] = {{0, 6, 12, 18, 24},
+                  {1, 6, 12, 18, 23},
+                  {1, 7, 12, 17, 23},
+                  {2, 7, 12, 17, 22},
+                  {3, 7, 12, 17, 21},
+                  {3, 8, 12, 16, 21},
+                  {4, 8, 12, 16, 20}};
+                  int i;
+  for(i = 6; i >= 0; i--){
+    on_led(arr[i], 5, sec);
+  }
+  delay(sec);
+}
+
+void spaceshuttle(int bpm){
+  int sec = 60000/bpm;
+  sec /= 11;
+  int arr[] = {27, 31, 32, 33, 35, 36, 37, 38, 39, 40, 41, 43, 44, 45, 49};
+  int i, k;
+  for(i = 0; i < 10; i++){
+    on_led(arr, 15, sec);
+    for(k = 0; k < 15; k++){
+      arr[k] -= 5;
+    }
+  }
+  delay(sec);
+}
